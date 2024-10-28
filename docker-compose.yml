@@ -1,0 +1,41 @@
+
+services:
+
+  php:
+    container_name: php
+    build:
+      context: .
+      dockerfile: Dockerfile_php
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/var/www/html
+    networks:
+      - wordpress-network
+    
+
+  db:
+    container_name: mysql
+    image: mysql:8.0
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: test
+      MYSQL_USER: ilkin
+      MYSQL_PASSWORD: 12345
+      MYSQL_ROOT_PASSWORD: 12345
+    volumes:
+      - db:/var/lib/mysql
+    networks:
+      - wordpress-network
+
+volumes:
+  wordpress:
+  db:
+  
+networks:
+  wordpress-network:
+    driver: bridge
+  

@@ -1,0 +1,21 @@
+.wp-list-table th, .wp-list-table td {
+    padding: 8px 12px;
+    text-align: left;
+}
+
+.wp-list-table .column-actions {
+    width: 100px;
+}
+
+.wp-list-table .button.delete-log {
+    background-color: #dc3232;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.wp-list-table .button.delete-log:hover {
+    background-color: #a52828;
+}
