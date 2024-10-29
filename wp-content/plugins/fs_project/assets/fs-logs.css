@@ -1,0 +1,20 @@
+.fs-project-logs.fs-light .wp-list-table thead {
+    background-color: #ffffff;
+    color: #333;
+}
+
+.fs-project-logs.fs-dark .wp-list-table thead {
+    background-color: #333;
+    color: #ffffff;
+}
+
+.fs-project-logs .wp-list-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.fs-project-logs .wp-list-table th,
+.fs-project-logs .wp-list-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}

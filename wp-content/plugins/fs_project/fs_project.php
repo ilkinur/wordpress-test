@@ -25,7 +25,7 @@
         global $wpdb;
         $table_name = $wpdb->prefix .'fs_logs';
         $charset_collate = $wpdb->get_charset_collate();
-        $sql = "CREATE TABLE $table_name (
+        $sql = "CREATE TABLE IF NOT EXISTS $table_name (
             id mediumint(9) NOT NULL AUTO_INCREMENT,
             post_id bigint(20) NOT NULL,
             login_id bigint(20) NOT NULL,
@@ -142,7 +142,6 @@
 
     }
 
-    add_action('wp_ajax_fs_project_delete_log', 'fs_project_delete_log');
 
     function fs_project_delete_log() {
         global $wpdb;
@@ -151,29 +150,15 @@
         wp_send_json_success();
     }
 
-    function fs_project_enqueue_scripts() {
-        wp_enqueue_script(
-            'fs-project-script',                                 
-            plugin_dir_url(__FILE__) . 'assets/fs_project.js', 
-            array('jquery'),
-            '1.0',
-            true
-        );
-    
-        wp_localize_script('fs-project-script', 'fs_project_ajax', array(
-            'ajax_url' => admin_url('admin-ajax.php')
-        ));
-    }
-    
-    add_action('admin_enqueue_scripts', 'fs_project_enqueue_scripts');
+    add_action('wp_ajax_fs_project_delete_log', 'fs_project_delete_log');
 
-    function fs_project_enqueue_styles() {
-        wp_enqueue_style('fs-project-style', plugin_dir_url(__FILE__) . 'assets/style.css', array(),'1.0','all');
-    }
-    
-    add_action('admin_enqueue_scripts', 'fs_project_enqueue_styles');
+    require_once plugin_dir_path(__FILE__) . 'fs_css_and_js_in.php';
 
     register_deactivation_hook(__FILE__, 'fs_project_deactivate');
 
     function fs_project_deactivate() {
     }
+
+    require_once plugin_dir_path(__FILE__) . 'fs_shortcode.php';
+
+    require_once plugin_dir_path(__FILE__) . 'fs_project_rest_api.php';

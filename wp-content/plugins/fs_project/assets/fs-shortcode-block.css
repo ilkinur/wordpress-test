@@ -1,0 +1,13 @@
+.fs-shortcode.light {
+    background-color: #f9f9f9;
+    color: #333;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.fs-shortcode.dark {
+    background-color: #333;
+    color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+}
